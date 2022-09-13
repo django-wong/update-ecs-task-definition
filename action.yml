@@ -1,30 +1,38 @@
-name: 'Update ESC task definition'
-description: 'Update container image of a task definition'
+name: "Update ESC task definition"
+description: "Update container image of a task definition"
 branding:
-  icon: 'cloud'
-  color: 'orange'
+  icon: "cloud"
+  color: "orange"
 inputs:
   task-definition-family:
-    description: 'Task definition family name'
+    description: "Task definition family name"
     required: true
   container:
-    description: 'Container name'
+    description: "Container name"
     required: false
   image:
-    description: 'The image url'
+    description: "The image url"
     required: true
   cluster:
     required: false
-    description: 'The cluster name'
+    description: "The cluster name"
   service:
     required: false
-    description: 'The service name'
+    description: "The service name"
   force-new-deployment:
     required: false
-    description: 'Whether or not to force a new deployment'
+    description: "Whether or not to force a new deployment"
+  wait-for-service-stability:
+    required: false
+    description: "Whether or not to wait for the service to become stable"
+    default: "false"
+  wait-for-minutes:
+    required: false
+    description: "The number of minutes to wait for service stability"
+    default: "15"
 outputs:
   revision: # id of output
-    description: 'The new revision number of the task definition'
+    description: "The new revision number of the task definition"
 runs:
   using: node16
-  main: 'dist/index.js'
+  main: "dist/index.js"
